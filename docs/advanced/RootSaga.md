@@ -31,7 +31,7 @@ The difference between one big all effect and several fork effects are that all 
 
 ## Avoid nesting fork effects in all effect
 
-Nesting fork effects in all effect is not a good pattern to implement sagas. It may mislead us to think that the fork effects are managed by the call effect, and the call effect will be resolved after all the forked tasks completes. But actually, the fork effects are always connected to the parent task through the underlying forkQueue. Call effect will be resolved immediately since all fork effects are non-blocking. Errors from the forked tasks bubble to the parent task rather than to the call effect.
+Nesting fork effects in all effect is not a good pattern to implement sagas. It may mislead us to think that the fork effects are managed by the all effect, and the all effect will be resolved after all the forked tasks completes. But actually, the fork effects are always connected to the parent task through the underlying forkQueue. All effect will be resolved immediately since all fork effects are non-blocking. Errors from the forked tasks bubble to the parent task rather than to the all effect.
 
 ```javascript
 // DO NOT DO THIS. Fork effects in all effect do not make sense.
